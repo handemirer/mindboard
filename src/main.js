@@ -1,5 +1,13 @@
 import { app, BrowserWindow, globalShortcut, ipcMain, Menu, screen } from 'electron';
-import { uIOhook, UiohookKey } from 'uiohook-napi';
+import { createRequire } from 'node:module';
+import nodePath from 'node:path';
+const _require = createRequire(import.meta.url);
+
+const { uIOhook, UiohookKey } = _require(
+  app.isPackaged
+    ? nodePath.join(process.resourcesPath, 'uiohook-napi', 'dist', 'index.js')
+    : 'uiohook-napi'
+);
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';

@@ -1,0 +1,333 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0d0d0f;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #f3f0ea;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+body {
+  user-select: none;
+}
+
+.app-shell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background: #0d0d0f;
+}
+
+.tab-bar {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  height: 42px;
+  padding: 0 6px;
+  background: #0d0d0f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  -webkit-app-region: drag;
+}
+
+.tab-button,
+.tab-add-button,
+.tab-close,
+.tab-rename-input,
+.overlay-close,
+.settings-close,
+.settings-tab,
+.settings-button,
+.shortcut-input {
+  -webkit-app-region: no-drag;
+}
+
+.tab-button,
+.tab-add-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+.tab-button {
+  min-width: 0;
+  max-width: 220px;
+  padding: 0 12px;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-button:hover,
+.tab-add-button:hover {
+  color: #f3f0ea;
+}
+
+.tab-button.is-active {
+  background: rgba(255, 255, 255, 0.06);
+  border-bottom-color: #c8a96e;
+  color: #f3f0ea;
+}
+
+.tab-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tab-close {
+  color: rgba(255, 255, 255, 0.38);
+  outline: none;
+}
+
+.tab-close:hover,
+.tab-close:focus-visible {
+  color: #ff8b7f;
+}
+
+.tab-add-button {
+  padding: 0 10px;
+  font-size: 22px;
+}
+
+.tab-rename-input {
+  width: 140px;
+  padding: 2px 6px;
+  border: 1px solid rgba(200, 169, 110, 0.9);
+  border-radius: 6px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.05);
+  color: #f3f0ea;
+}
+
+.canvas-shell {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.canvas-shell .excalidraw {
+  height: 100% !important;
+}
+
+.overlay-pill {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  z-index: 30;
+  padding: 7px 16px;
+  border: 1px solid rgba(200, 169, 110, 0.9);
+  border-radius: 999px;
+  background: rgba(200, 169, 110, 0.18);
+  color: #e0bb78;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transform: translateX(-50%);
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+
+.overlay-close {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 30;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(255, 108, 99, 0.7);
+  border-radius: 999px;
+  background: rgba(161, 33, 33, 0.3);
+  color: #ff8b7f;
+  cursor: pointer;
+}
+
+.overlay-close:hover {
+  background: rgba(161, 33, 33, 0.45);
+}
+
+.settings-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at top, rgba(200, 169, 110, 0.12), transparent 40%),
+    rgba(7, 7, 8, 0.72);
+  backdrop-filter: blur(18px);
+}
+
+.settings-modal {
+  width: min(640px, calc(100vw - 32px));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(25, 26, 29, 0.98), rgba(13, 13, 15, 0.98));
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.settings-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 22px 22px 16px;
+}
+
+.settings-eyebrow {
+  color: rgba(200, 169, 110, 0.88);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.settings-title {
+  margin-top: 6px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.settings-close {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+
+.settings-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 0 22px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.settings-tab {
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.settings-tab.is-active {
+  background: rgba(200, 169, 110, 0.15);
+  color: #f3f0ea;
+}
+
+.settings-panel {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+}
+
+.settings-field {
+  display: grid;
+  gap: 8px;
+}
+
+.settings-label {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.settings-help {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.shortcut-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.shortcut-display {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #f3f0ea;
+  cursor: default;
+  text-align: left;
+}
+
+.shortcut-display.is-capturing {
+  border-color: rgba(200, 169, 110, 0.9);
+  background: rgba(200, 169, 110, 0.12);
+  color: #f7e4bc;
+}
+
+.shortcut-display:focus-visible,
+.settings-close:focus-visible,
+.settings-button:focus-visible {
+  outline: 2px solid rgba(200, 169, 110, 0.9);
+  outline-offset: 2px;
+}
+
+.shortcut-change-button {
+  min-width: 92px;
+}
+
+.settings-error {
+  color: #ff8b7f;
+  font-size: 13px;
+}
+
+.settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 0 22px 22px;
+}
+
+.settings-button {
+  min-width: 104px;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.settings-button.is-secondary {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: #f3f0ea;
+}
+
+.settings-button.is-primary {
+  background: #c8a96e;
+  color: #111111;
+  font-weight: 700;
+}
